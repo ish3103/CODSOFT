@@ -1,0 +1,58 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class NumberGuessingGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int score = 0; // Track rounds won
+        int roundNumber = 1;
+
+        while (true) {
+            System.out.println("\n--- Round " + roundNumber + " ---");
+            int numberToGuess = random.nextInt(100) + 1; // 1 to 100
+            int attemptsLeft = 7; // Maximum number of attempts
+
+            while (attemptsLeft > 0) {
+                System.out.print("Guess the number (1-100). Attempts left: " + attemptsLeft + ": ");
+
+                            if (!scanner.hasNextInt()) {
+                    System.out.println("Please enter a valid number.");
+                    scanner.next(); // delete the invalid input
+                    continue;
+                }
+
+                int guess = scanner.nextInt();
+
+                if (guess == numberToGuess) {
+                    System.out.println("🎉 Correct! You guessed the number!");
+                    score++;
+                    break;
+                } else if (guess > numberToGuess) {
+                    System.out.println("Too high! ");
+                } else {
+                    System.out.println("Too low! ");
+                }
+
+                attemptsLeft--;
+            }
+
+            if (attemptsLeft == 0) {
+                System.out.println(" Out of attempts! The number was " + numberToGuess + ".");
+            }
+
+            System.out.print("Do you want to play another round? (yes/no): ");
+            String playAgain = scanner.next().toLowerCase();
+
+            if (!playAgain.equals("y")) {
+                System.out.println("\nGame Over! You won " + score + " round(s) in total. 🏆");
+                break;
+            }
+
+            roundNumber++;
+        }
+
+        scanner.close();
+    }
+}
