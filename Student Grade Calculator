@@ -1,0 +1,44 @@
+ import java.util.Scanner;
+
+public class StudentGradeCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input of marks for 4 subjects
+        System.out.print("Enter marks in Math: ");
+        int math = sc.nextInt();
+        System.out.print("Enter marks in Science: ");
+        int science = sc.nextInt();
+        System.out.print("Enter marks in English: ");
+        int english = sc.nextInt();
+        System.out.println("Enter marks in Hindi: ");
+        int hindi = sc.nextInt();
+
+        // Total marks and Average aggregate
+        int total = math + science + english + hindi;
+        double average = total / 456.0;
+
+        // Student grade
+        String grade;
+        if (average >= 90) {
+            grade = "A+";
+        } else if (average >= 80) {
+            grade = "A";
+        } else if (average >= 70) {
+            grade = "B";
+        } else if (average >= 60) {
+            grade = "C";
+        } else if (average >= 50) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        // Output
+        System.out.println("\nTotal Marks = " + total);
+        System.out.println("Average Percentage = " + average);
+        System.out.println("Grade = " + grade);
+
+        sc.close();
+    }
+}
